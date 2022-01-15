@@ -1,4 +1,6 @@
 import os
+import dj_database_url
+
 """
 Django settings for bytesized_goods project.
 
@@ -26,7 +28,7 @@ SECRET_KEY = 'django-insecure-y)x$l1io422tl5tgeu2*f8mo=e4*i8bhsbk9o(fm&v6ffdfc*3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
  
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bytesized-trades.herokuapp.com', 'localhost']
 
 # Application definition
 
@@ -115,11 +117,20 @@ STATICFILES_DIRS = [
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+DATABASES = {
+    'default': dj_database_url.parse('postgres://seozekfzlphtxh:cc4ffc9741af6ab009a3365d52dbfffef381a268a3e563933d92327c59b06e00@ec2-52-211-158-144.eu-west-1.compute.amazonaws.com:5432/d4u64j7ib9dmg2')
 }
 
 

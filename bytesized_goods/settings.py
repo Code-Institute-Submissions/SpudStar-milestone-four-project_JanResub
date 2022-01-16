@@ -165,19 +165,17 @@ USE_TZ = True
 # https://stackoverflow.com/questions/40127675/serve-static-files-from-google-cloud-storage-bucket-for-django-app-hosted-on-gc
 
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-MEDIA_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
                     os.path.join(BASE_DIR, "checkout", "static")]
-
-MEDIAFILES_DIRS = [os.path.join(BASE_DIR, 'media')]
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 GS_BUCKET_NAME = 'django-bucket-bytesize'
 
-STATIC_URL = 'https://storage.googleapis.com/<django-bucket-bytesize>/'
-MEDIA_URL = 'https://storage.googleapis.com/<django-bucket-bytesize>/'
+STATIC_URL = 'https://storage.googleapis.com/<django-bucket-bytesize>/static/'
+MEDIA_ROOT = 'media/'
+MEDIA_URL = 'https://storage.cloud.google.com/django-bucket-bytesize/media/'
 
 from google.oauth2 import service_account
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(

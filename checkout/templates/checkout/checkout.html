@@ -8,32 +8,37 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="container-fluid col-6 mt-3">
-        <form action="{% url 'checkout' %}" method="POST" id="payment-form">
-            {% csrf_token %}
-            <fieldset>
-                <legend>Your Details</legend>
-                {{ order_form.full_name | as_crispy_field }}
-                {{ order_form.email | as_crispy_field }}
-                {{ order_form.user_trainer_code | as_crispy_field }}
-            </fieldset>
-            <fieldset>
-                <!-- If anomynous -->
-                {% if not user.is_authenticated %}
-                <legend>Payment Information</legend>
-                {% endif %}
-                <div id="card-element"></div>
-                <div id="card-error-message"></div>
-            </fieldset>
-            <div class="mt-4">
-                <!-- Buttons -->
-                <button id='submit-button' class='btn btn-outline-light'>
-                    <span>Finish</span>
-                </button>
-                {% if not user.subscribed %}
-                    <h3>SUCCESS</h3>
-                {% endif %}
-            </div>
-        </form>
+        {% if not user.subscribed %}
+                        <h3>SUCCESS</h3>
+        {% endif %}
+        {% if not user.is_authenticated %}
+            <!-- If anomynous -->
+
+        {% else %}
+
+            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Your Details</legend>
+                    {{ order_form.full_name | as_crispy_field }}
+                    {{ order_form.email | as_crispy_field }}
+                    {{ order_form.user_trainer_code | as_crispy_field }}
+                </fieldset>
+                <fieldset>
+                    
+                    <legend>Payment Information</legend>
+                    <div id="card-element"></div>
+                    <div id="card-error-message"></div>
+                </fieldset>
+                <div class="mt-4">
+                    <!-- Buttons -->
+                    <button id='submit-button' class='btn btn-outline-light'>
+                        <span>Finish</span>
+                    </button>
+                    
+                </div>
+            </form>
+        {% endif %}
     </div>
 {% endblock %}
 

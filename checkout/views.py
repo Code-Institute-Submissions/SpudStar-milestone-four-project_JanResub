@@ -69,6 +69,21 @@ def checkout(request):
 def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        # Attach the user's profile to the order
+        order.user_profile = profile
+        order.save()
+
+        # Saves the users info
+        profile_data = {
+            'default_trainer_number': order.user_trainer_code,
+            'default_email': order.email,
+            'subscribed':True,
+        }
+        user_profile_form = UserProfileForm(profile_data, instance=profile)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
     # Insert Success Message
 
     if 'bag' in request.session:

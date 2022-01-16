@@ -1,6 +1,4 @@
 import os
-import dj_database_url
-
 """
 Django settings for bytesized_goods project.
 
@@ -28,7 +26,7 @@ SECRET_KEY = 'django-insecure-y)x$l1io422tl5tgeu2*f8mo=e4*i8bhsbk9o(fm&v6ffdfc*3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
  
-ALLOWED_HOSTS = ['bytesized-trades.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = []
 
 # Application definition
 

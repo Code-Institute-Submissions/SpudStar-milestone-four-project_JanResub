@@ -7,6 +7,7 @@ from .models import Order, OrderLineItem
 
 from bag.contexts import SUBSCRIPTION_COST
 from .forms import OrderForm
+from profiles.forms import UserProfileForm
 
 import stripe
 # Create your views here.

@@ -6,15 +6,15 @@ from .forms import UserProfileForm
 
 def profile(request):
     """ Display the user's profile. """
-    profile = get_object_or_404(UserProfile, user=request.user)
+    profiles = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
+        form = UserProfileForm(request.POST, instance=profiles)
         if form.is_valid():
             form.save()
 
-    form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
+    form = UserProfileForm(instance=profiles)
+    orders = profiles.orders.all()
 
     context = {
         'form': form,

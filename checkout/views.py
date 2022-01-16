@@ -39,7 +39,6 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
                             args=[order.order_number]))
     else:
@@ -49,13 +48,15 @@ def checkout(request):
 
         order_form = OrderForm()
 
-    stripe_total = round(SUBSCRIPTION_COST*100)
-    stripe.api_key = stripe_secret_key
+        if not user.subscribed:
+            stripe_total = round(SUBSCRIPTION_COST*100)
+            stripe.api_key = stripe_secret_key
 
-    intent = stripe.PaymentIntent.create(
-        amount=stripe_total,
-        currency=settings.STRIPE_CURRENCY,
-    )
+            intent = stripe.PaymentIntent.create(
+                amount=stripe_total,
+                currency=settings.STRIPE_CURRENCY,
+            )
+
 
     template = 'checkout/checkout.html'
     context = {
@@ -84,6 +85,7 @@ def checkout_success(request, order_number):
         user_profile_form = UserProfileForm(profile_data, instance=profile)
         if user_profile_form.is_valid():
             user_profile_form.save()
+            
     # Insert Success Message
 
     if 'bag' in request.session:

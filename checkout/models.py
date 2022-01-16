@@ -1,12 +1,13 @@
 import uuid
 
 from django.db import models
-from django.conf import settings
 
 from goods.models import Info
 from profiles.models import UserProfile
 
 # Create your models here.
+
+
 class Order(models.Model):
 
     order_number = models.CharField(max_length=16, null=False, editable=False)

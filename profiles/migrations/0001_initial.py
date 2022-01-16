@@ -17,10 +17,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserProfile',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('default_trainer_code', models.CharField(blank=True, max_length=20, null=True)),
-                ('default_email', models.CharField(blank=True, max_length=20, null=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True,
+                                           serialize=False,
+                                           verbose_name='ID')),
+                ('default_trainer_code', models.CharField(blank=True,
+                                                          max_length=20,
+                                                          null=False)),
+                ('default_email', models.CharField(blank=True, max_length=20,
+                                                   null=False)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                              to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

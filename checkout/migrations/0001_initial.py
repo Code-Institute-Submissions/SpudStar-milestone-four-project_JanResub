@@ -27,8 +27,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='OrderLineItem',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='lineitems', to='checkout.order')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True,
+                                           serialize=False,
+                                           verbose_name='ID')),
+                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                            related_name='lineitems',
+                                            to='checkout.order')),
             ],
         ),
     ]

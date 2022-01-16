@@ -7,37 +7,29 @@
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="container-fluid col-6 mt-3">
-        
-        {% if not user.is_authenticated %}
-            <!-- If anomynous -->
-
-        {% else %}
-            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
-                {% csrf_token %}
-                <fieldset>
-                    <legend>Your Details</legend>
-                    {{ order_form.full_name | as_crispy_field }}
-                    {{ order_form.email | as_crispy_field }}
-                    {{ order_form.user_trainer_code | as_crispy_field }}
-                </fieldset>
-                <fieldset>
-                    {% if not user.subscribed %}
-                        <!-- If not paid the subscription -->
-                        <legend>Payment Information</legend>
-                        <div id="card-element"></div>
-                        <div id="card-error-message"></div>
-                    {% endif %}
-                </fieldset>
-                <div class="mt-4">
-                    <!-- Buttons -->
-                    <button id='submit-button' class='btn btn-outline-light'>
-                        <span>Finish</span>
-                    </button>
-                    
-                </div>
-            </form>
-        {% endif %}
+    <div class="col-6 mt-3 text-center">
+        <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Your Details</legend>
+                {{ order_form.full_name | as_crispy_field }}
+                {{ order_form.email | as_crispy_field }}
+                {{ order_form.user_trainer_code | as_crispy_field }}
+            </fieldset>
+            <fieldset>
+                    <legend>Payment Information</legend>
+                    <div id="card-element"></div>
+                    <div id="card-error-message"></div>
+                    <label class="form-check-label" for="donate-check">Donate £4.99 to support us!</label>
+                    <input class="form-check-input ml-2 mr-0" type="checkbox" id="donate-check" name="donation" checked>
+            </fieldset>
+            <div class="mt-4">
+                <!-- Buttons -->
+                <button id='submit-button' class='btn btn-outline-light'>
+                    <span>Finish</span>
+                </button>
+            </div>
+        </form>
     </div>
 {% endblock %}
 

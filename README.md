@@ -1,14 +1,63 @@
 
-# ByteSized Goods
+# ByteSized Trades
 ## A Full Stack Development Project by Edward Stanley
-This was meant to be a project showcasing everything I had learnt over this course, however due to conflicting times with university work I was unable to finish the project. Upon contact with the student care team I was advised to at least try and publish something and await resubmission.
-The intention for this project was for users to be able to buy and sell 'Pokemon', creatures from the popular pokemon franchise, based on their levels, abilities, stats ect which can vary across pokemon. Users would be able to put their own pokemon up for sale, which when bought would prompt an email to be submitted to the buyer and seller allowing them to communicate to exchange in game. The site would only sort the buying and communication, any trading of pokemon would be done with the buyer and seller.
-Users would have their own account to advertise multiple pokemon, and edit their submissions if needs be.
+Bytesized Trades is a website with one goal in mind, to give players of the game 'Pokemon' a forum in which they can request pokemon they want added to their team. 
+
+The current setup of the site is that the owner holds a database worth of pokemon they are looking to trade off, so instead of asking around aimlessly, those trainers now come to him. The website has the ability for the owner to add pokemon, edit them, and delete them if they no longer exist.
+
+The users are able to access the website anomynously, or create an account which gets verified by email, and add pokemon they want to request to the bag. Due to the nature of this, the same id pokemon cannot be added by the user twice as that would be redundant. 
+The user can then checkout those pokemon by providing their own trainer code and email (Else the user would have no way to communicate with them to trade).
+#
+## User Stories
+### The Owner -
 
 #
+## Existing Features
+I will be covering the features on an app by app basis
+### The Base Directory / Home App
+- Contains a structured layout thatnks to Bootstrap which was the majority of the stylings for this project too
+- Contains the formatting necessary to deploy the website to Heroku
+- Contains a settings app which takes Heroku's Config Vars for the more sensitive links which helps secure the site
+- Contains a static folder which is accessed and saved in Google Cloud in order to give additional stylings at points in the project
+- Contains a structured nav with collapsable links which keeps screen coverage minimal
+### The Goods App
+- The Ability to add a pokemon if you are a superuser
+- The Ability to edit a pokemon if you are a superuser
+- The Ability to delete a pokemon if you are a superuser
+- On a regular load iterates through all the pokemon in a database, displaying them all in a card like format with the name, picture, types, level, and the pokemon's owner
+- On a load specified by the type buttons, filters the list to streamline the users experience to find what they want. In terms of pokemon types is a very important factor.
+- On a load specified by the search bar, filter the list to any pokemon containing the submitted string, again this streamlines the experience for the user allowing them to get what they want quicker.
+- When a pokemon's image is clicked, it takes the user to a more detailed view of its stats, as well as presenting the user with the option to add the pokemon to their bag.
+### The Bag App
+- The ability to view what pokemon the user has selected thus far, and a breakdown of each one, to let the user keep track easier.
+- The ability to remove a pokemon from the bag if the user deems they dont want it anymore
+- The ability to send the user to checkout the pokemon they have so far, or return to the rest whilst keeping the session open so that the user doesnt lose their additions
+### The Profile App
+- Uses Allauth to allow for secure sign in, sign out and secure general activities
+- Uses Allauth's authentication system by sending the User a confirmation email
+- Allows for protection against non admin users from accessing features they shouldnt such as adding products
+### The Checkout App
+- Takes a form consisting of the user's inputs, whether anomynous or not, and generates a success page provided that the form is valid.
+- Uses Stripe as an optional donation if the user wishes to contribute towards the project, payments successfully come up through stripes system
+- Gives a clear breakdown of the order on success reminding the user what they have requested from the owner
+
+### Features yet to be added
+- Greying out the add to cart button if the user already has that product in their bag
+- As set up by the foreign key in model Info, the ability for the user to make their own pokemon and add them to the system. 
+They would only be able to delete and edit their own. This wasnt implemented due to unsurity if it would contradict L03.3
+- An alternate to the checkout system where the user has an option of adding one of their pokemon to the order form, which would then have the details sent to the owner forming a better trade. This wasnt added due to the point above.
+- The Info model and early commits have a price assigned which I initially wanted to implement however opted for the donation due to time. It still being there allows me to adapt it in future. The same occurs with the abilities which again would be nice to include however editing 801+ fixtures would've taken a while 
+
 ## Testing
-One of the main issues I had whilst creating this project was the interactions between clicking on a specific pokemon to bring you to a seperate page where all the information for that pokemon was meant to exist. I was unable to get this to work with the django framework and any external research I did to fix this didnt amount to anything.
-Another problem I had was with the AllAuth system initial testing. The system would always skip past the user login step, instead going straight to the success page. Again nothing I found helped alieviate this.
+Over the project there were multiple small flaws such as missing an s off a variable stopping the ListInlineItem from going inline, however I would like to identify some of the key problems I had whilst working on this website:
+
+### Two Foreign Keys for Info
+The Info model contains the variables type1 and type2, which can range from  
+1-18 usually due to 18 types being in the game. The problem however was that type2 didnt always have a value hence couldnt link up with a foreign key. 
+To solve this I created a 19th category with a value of 19 as essentially a null category. Any items which initially didnt have a second type were assigned to it to avoid any null errors with the key.
+
+### Images not showing on mobile
+
 
 #
 ## Deployment
@@ -16,7 +65,8 @@ I was unable to deploy the project via Heroku, the app refused to connect. Upon 
 
 #
 ## Acknowledgement
-I am truely sorry for this poor state of a project, university work completley swept me up and I was unable to complete it. I will have to resubit this project. If I could please get some advice on the code I have done so far, as I struggled with the Django database, that would be wonderful thanks.
 
-Thanks again to the Student Care team who explained to me my options at this time. I unfortunatley, as explained by them, am going to have to arrange a date for resubmission for this project.
+A huge thank you to the Student Care team, especially Kieron, whom without which this definitely wouldn't have been possible. It has been a nightmare of a month with illness and bereavement, and thankfully now I have a valid project to submit.
+
+Also a thank you to Igor, who helped me figure out why the ListItemInline wasnt inline in the admin
 #

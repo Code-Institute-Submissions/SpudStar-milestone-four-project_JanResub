@@ -13,7 +13,6 @@ class UserProfile(models.Model):
     default_email = models.CharField(max_length=20, 
                                      null=False, blank=False,
                                      default='xx@gmail.com')
-    subscribed = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):
         return self.user.username

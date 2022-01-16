@@ -8,8 +8,12 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_trainer_code = models.CharField(max_length=20,
-                                            null=False, blank=True)
-    default_email = models.CharField(max_length=20, null=True, blank=True)
+                                            null=False, blank=False,
+                                            default='XXX-XXXX-XXX')
+    default_email = models.CharField(max_length=20, 
+                                     null=False, blank=False,
+                                     default='xx@gmail.com')
+    subscribed = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):
         return self.user.username

@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="col-6 mt-3 text-center">
+    <div class="col-6 mt-3 mx-0 text-center">
         <form action="{% url 'checkout' %}" method="POST" id="payment-form">
             {% csrf_token %}
             <fieldset>

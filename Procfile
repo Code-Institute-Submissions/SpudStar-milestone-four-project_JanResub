@@ -1,1 +1,1 @@
-web: gunicorn bytesizedgoods.wsgi:application
+web: gunicorn bytesized_goods.wsgi:application

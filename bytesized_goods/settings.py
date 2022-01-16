@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 """
 Django settings for bytesized_goods project.
 
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-y)x$l1io422tl5tgeu2*f8mo=e4*i8bhsbk9o(fm&v6ffdfc*3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
  
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bytesized-trades-2.herokuapp.com', 'localhost']
 
 # Application definition
 
@@ -115,6 +116,7 @@ STATICFILES_DIRS = [
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
@@ -126,7 +128,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

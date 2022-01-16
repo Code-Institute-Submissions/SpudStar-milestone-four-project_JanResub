@@ -19,7 +19,7 @@ class Info(models.Model):
     level = models.IntegerField(null=True, blank=True)
     pdex_no = models.IntegerField()
     generation = models.IntegerField(null=True, blank=True)
-    abilities = models.CharField(max_length=30)
+    abilities = models.CharField(max_length=100)
     type1 = models.ForeignKey('Category', null=True, blank=True, 
                               on_delete=models.SET_NULL)
     type2 = models.ForeignKey('Category', null=True, blank=True, 

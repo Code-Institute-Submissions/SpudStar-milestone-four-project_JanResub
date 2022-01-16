@@ -25,8 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'project_name.settings.local')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
-
+#DEBUG = 'DEVELOPMENT' in os.environ
+DEBUG = True
 ALLOWED_HOSTS = ['bytesized-trades-2.herokuapp.com', 'localhost']
 
 # Application definition
@@ -164,9 +164,13 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# The code that allowed me to save static files in Google Cloud can be found
+# at the link below
+# https://stackoverflow.com/questions/40127675/serve-static-files-from-google-cloud-storage-bucket-for-django-app-hosted-on-gc
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
+                    os.path.join(BASE_DIR, 'media'),
+                    os.path.join(BASE_DIR, "checkout", "static")]
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'django-bucket-bytesize'
@@ -177,13 +181,8 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     'credentials.json'  # see step 3
 )
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://storage.googleapis.com/<django-bucket-bytesize>/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-from google.oauth2 import service_account
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'credentials.json'))
 
 DEFAULT_FILE_STORAGE = 'django_blog_project.gcloud.GoogleCloudMediaFileStorage'
 GS_PROJECT_ID = '‘bytesized-trades-2'

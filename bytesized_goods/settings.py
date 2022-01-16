@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'project_name.settings.local')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = 'DEVELOPMENT' in os.environ
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['bytesized-trades-2.herokuapp.com', 'localhost']
 
 # Application definition
@@ -65,6 +65,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'bytesized_goods.urls'
 
+# Allows styling for crispy templates
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
@@ -101,7 +102,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-
+# For Authentication
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'

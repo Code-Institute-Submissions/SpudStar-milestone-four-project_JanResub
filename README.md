@@ -36,6 +36,7 @@ I will be covering the features on an app by app basis
 - Uses Allauth to allow for secure sign in, sign out and secure general activities
 - Uses Allauth's authentication system by sending the User a confirmation email
 - Allows for protection against non admin users from accessing features they shouldnt such as adding products
+- Whilst it cannot render them currently, I unfortunatley ran out of time, it returns the order number to the profile so users can see their past order numbers. Ideally it would show them a breakdown but I decided to keep it in as it proves there is a point to logging in
 ### The Checkout App
 - Takes a form consisting of the user's inputs, whether anomynous or not, and generates a success page provided that the form is valid.
 - Uses Stripe as an optional donation if the user wishes to contribute towards the project, payments successfully come up through stripes system
@@ -61,7 +62,15 @@ To solve this I created a 19th category with a value of 19 as essentially a null
 A huge frustration through this was when a migration and data was already loaded for a model, it very much did not like changes to it. Hence in order to run the migration I would often have to start a new workspace, reinstall everything using pip3, and then migrate. I tried searching on the web for a quicker way to do this to no avail.
 
 ### Images not showing on mobile
-After finally getting the Google Cloud working (which was an ordeal in itself) the images for all the links were no more. Also my background image from the css wouldnt render anymore
+After finally getting the Google Cloud working (which was an ordeal in itself) the images for all the links were no more. Turns out IOS doesn't seem to like my website, and unfortunatley I couldnt find a work around for this
+
+### Images not showing on mobile
+Other known unfixed bugs:
+- On smaller screens the padding from the top doesnt update correctly causing overlap, this isnt as much of an issue on larger screens but it is still annoying
+- The footer keeps popping up which isnt ideal
+- A few forms get shifted to the left/right
+
+While those lead to a bad user experience, the views it happens on makes very little difference to what the user usually encounters. All the main views are working as intended, and visual tricks like the collapsable with links help a lot for the user experience overall
 
 #
 ## Deployment

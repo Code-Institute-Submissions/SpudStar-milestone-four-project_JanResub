@@ -42,7 +42,6 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
                             args=[order.order_number]))
-        else:
     else:
         bag = request.session.get('bag', {})
         if not bag:

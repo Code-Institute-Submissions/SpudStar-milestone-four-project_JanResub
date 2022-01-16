@@ -2,4 +2,23 @@
 {% load static %}
 
 {% block content %}
+
+    <div class="container h-100">
+        <div class="row h-100 mx-auto">
+            <div class="col-7 col-md-6 my-auto text-center">
+                <h1 class="display-4 text-black">
+                    A World of Trading Awaits!
+                </h1>
+                <p class="display-10 text-black">
+                    We are a subscription service that helps you trade pokemon with other trainers!
+                </p>
+                <div class="my-5">
+                    <h4>
+                        <a href="{% url 'products' %}" class="btn btn-lg btn-outline-light btn-rounded-3 text-uppercase py-2">Shop Now</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

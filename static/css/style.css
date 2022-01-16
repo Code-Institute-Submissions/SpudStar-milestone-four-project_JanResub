@@ -2,7 +2,6 @@ div.nav-offset{
     padding-top:120px;
     background-color: #2d30356a;
     color:#ffffff;
-    min-height:90vh
 }
 
 @media (max-width:995) { 

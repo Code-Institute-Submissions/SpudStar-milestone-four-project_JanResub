@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from google.oauth2 import service_account
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -164,23 +166,30 @@ USE_TZ = True
 # at the link below
 # https://stackoverflow.com/questions/40127675/serve-static-files-from-google-cloud-storage-bucket-for-django-app-hosted-on-gc
 
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATIC_URL = "/static/"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
-                    os.path.join(BASE_DIR, "checkout", "static")]
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+if "USE_CLOUD" in os.environ:
 
-GS_BUCKET_NAME = 'django-bucket-bytesize'
+    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    MEDIAFILES_LOCATION = 'media'
 
-STATIC_URL = 'https://storage.googleapis.com/<django-bucket-bytesize>/static/'
-MEDIA_ROOT = 'media/'
-MEDIA_URL = 'https://storage.cloud.google.com/django-bucket-bytesize/media/'
+    # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
+    #                     os.path.join(BASE_DIR, "checkout", "static")]
+    
+    GS_BUCKET_NAME = os.getenv('BUCKET_KEY', '')
 
-from google.oauth2 import service_account
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    'credentials.json'  # see step 3
-)
+    STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
+    MEDIA_URL = f"https://storage.cloud.google.com/{GS_BUCKET_NAME}/media/"
+
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+        'credentials.json' 
+    )
 
 
 # Stripe content

@@ -79,7 +79,7 @@ def checkout_success(request, order_number):
         profile_data = {
             'default_trainer_number': order.user_trainer_code,
             'default_email': order.email,
-            'subscribed':True,
+            'subscribed': True,
         }
         user_profile_form = UserProfileForm(profile_data, instance=profile)
         if user_profile_form.is_valid():

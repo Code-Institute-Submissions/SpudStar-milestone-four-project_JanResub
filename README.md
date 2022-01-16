@@ -47,6 +47,7 @@ I will be covering the features on an app by app basis
 They would only be able to delete and edit their own. This wasnt implemented due to unsurity if it would contradict L03.3
 - An alternate to the checkout system where the user has an option of adding one of their pokemon to the order form, which would then have the details sent to the owner forming a better trade. This wasnt added due to the point above.
 - The Info model and early commits have a price assigned which I initially wanted to implement however opted for the donation due to time. It still being there allows me to adapt it in future. The same occurs with the abilities which again would be nice to include however editing 801+ fixtures would've taken a while 
+- The ability to filter respective to a specific stat i.e hp. I unfortunatley ran out of time to do any more filtering
 
 ## Testing
 Over the project there were multiple small flaws such as missing an s off a variable stopping the ListInlineItem from going inline, however I would like to identify some of the key problems I had whilst working on this website:
@@ -64,17 +65,27 @@ After finally getting the Google Cloud working (which was an ordeal in itself) t
 
 #
 ## Deployment
-I was unable to deploy the project via Heroku, the app refused to connect. Upon attempts to log in via Heroku it would state there was an IP error. I was unable to fix this in time for submission unfortunatley.
+The steps on how to deploy the project for yourself are outlined below:
+
 
 #
 ## Credits
 ### General Code Layout
 For the purpose of this project I referred to and used authentication from the Code Institute Chris's Boutique ADO. However I believe I have differentiated the project enough through my own bootstrap analysis, and database scheme in order to support my own user stories.
+### Code Specifics
+A major part of the borrowed code is for google cloud to access my static files.
+The steps I took and tried to better fit me is from [here.](https://stackoverflow.com/questions/40127675/serve-static-files-from-google-cloud-storage-bucket-for-django-app-hosted-on-gc)
 ### Data for Databases
 The Json for Info fixtures was largely manipulated by myself however the origonal source of the data was from [here.](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_(Generation_I))
 I copied and pasted the tables into Excel, and then used Windows Powershell to convert it to Json, plus minor text formatting to make it a viable fixture.
 ### Media
-The sprites for each pokemon are gotten from [here.](https://veekun.com/dex/downloads)) 
+The sprites for each pokemon are gotten from [here.](https://veekun.com/dex/downloads), There was not much editing to speak of.
+
+The images for each pokemon type are gotten from [here.](https://brickbronze.fandom.com/wiki/Appendix:Pok%C3%A9mon_Types), This took a lot more editing as they were all in the same image. I also resized them so the default maximum size would be suitable for me.
+
+The image for the repeating background was made by myself in Gimp, an image editing software, which I also used to edit the above mentions. 
+
+I should mention however that despite the source links all of the images are using assets from Nintendo's Pokemon.
 #
 ## Acknowledgement
 

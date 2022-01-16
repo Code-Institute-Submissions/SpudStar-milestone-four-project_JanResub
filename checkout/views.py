@@ -48,14 +48,12 @@ def checkout(request):
 
         order_form = OrderForm()
 
-        if not user.subscribed:
-            stripe_total = round(SUBSCRIPTION_COST*100)
+        stripe_total = round(SUBSCRIPTION_COST*100)
             stripe.api_key = stripe_secret_key
 
             intent = stripe.PaymentIntent.create(
                 amount=stripe_total,
                 currency=settings.STRIPE_CURRENCY,
-            )
 
     template = 'checkout/checkout.html'
     context = {

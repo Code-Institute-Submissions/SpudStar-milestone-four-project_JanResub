@@ -29,6 +29,9 @@
                 <button id='submit-button' class='btn btn-outline-light'>
                     <span>Finish</span>
                 </button>
+                {% if not user.subscribed %}
+                    <h3>SUCCESS</h3>
+                {% endif %}
             </div>
         </form>
     </div>

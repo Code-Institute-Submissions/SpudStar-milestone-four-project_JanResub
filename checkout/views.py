@@ -43,7 +43,6 @@ def checkout(request):
             return redirect(reverse('checkout_success',
                             args=[order.order_number]))
         else:
-            print(order_form)
     else:
         bag = request.session.get('bag', {})
         if not bag:

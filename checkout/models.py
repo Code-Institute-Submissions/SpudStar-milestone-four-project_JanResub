@@ -10,7 +10,7 @@ from profiles.models import UserProfile
 
 class Order(models.Model):
 
-    order_number = models.CharField(max_length=50, null=False, editable=False)
+    order_number = models.CharField(max_length=16, null=False, editable=False)
     full_name = models.CharField(max_length=64, null=False, blank=False)
     email = models.EmailField(max_length=50, null=False, blank=False)
     user_trainer_code = models.CharField(max_length=20,

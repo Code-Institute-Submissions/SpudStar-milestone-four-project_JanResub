@@ -10,7 +10,31 @@ The user can then checkout those pokemon by providing their own trainer code and
 #
 ## User Stories
 ### The Owner -
+    - Wants to advertise all the pokemon they have
+    - Wants people to be able to add them to the bag
+    - Wants to be able to contact the user after the request is made
+    - Might want to get a bit of money from each request
 
+### The Unauthorized user -
+    - Wants to advertise all the pokemon they have
+    - Wants people to be able to add them to the bag
+    - Wants to be able to contact the user after the request is made
+    - Might want to get a bit of money from each request
+
+#
+
+### The Authorized user -
+    - Wants to advertise all the pokemon they have
+    - Wants people to be able to add them to the bag
+    - Wants to be able to contact the user after the request is made
+    - Might want to get a bit of money from each request
+
+#
+## Wireframes
+The following wirefrane was made in Balsamiq  
+[Please Click Here.](read_me_resources_/wireframe_ms3.pdf)
+
+The wireframe can also be found in the readmeassets folder included in this project
 #
 ## Existing Features
 I will be covering the features on an app by app basis
@@ -71,6 +95,8 @@ Other known unfixed bugs:
 - A few forms get shifted to the left/right
 
 While those lead to a bad user experience, the views it happens on makes very little difference to what the user usually encounters. All the main views are working as intended, and visual tricks like the collapsable with links help a lot for the user experience overall
+
+## Testing User Stories
 
 #
 ## Deployment

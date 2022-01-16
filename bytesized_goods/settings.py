@@ -110,10 +110,6 @@ LOGIN_REDIRECT_URL = '/profile'
 
 WSGI_APPLICATION = 'bytesized_goods.wsgi.application'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -168,28 +164,25 @@ USE_TZ = True
 # at the link below
 # https://stackoverflow.com/questions/40127675/serve-static-files-from-google-cloud-storage-bucket-for-django-app-hosted-on-gc
 
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+MEDIA_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage/'
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
-                    os.path.join(BASE_DIR, 'media'),
                     os.path.join(BASE_DIR, "checkout", "static")]
 
+MEDIAFILES_DIRS = [os.path.join(BASE_DIR, 'media')]
+
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
 GS_BUCKET_NAME = 'django-bucket-bytesize'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
 STATIC_URL = 'https://storage.googleapis.com/<django-bucket-bytesize>/'
+MEDIA_URL = 'https://storage.googleapis.com/<django-bucket-bytesize>/'
+
 from google.oauth2 import service_account
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     'credentials.json'  # see step 3
 )
-
-MEDIA_URL = 'https://storage.googleapis.com/<django-bucket-bytesize>/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-DEFAULT_FILE_STORAGE = 'django_blog_project.gcloud.GoogleCloudMediaFileStorage'
-GS_PROJECT_ID = '‘bytesized-trades-2'
-GS_BUCKET_NAME = 'django-bucket-bytesize'
-MEDIA_ROOT = "media/"
-UPLOAD_ROOT = 'media/uploads/'
-MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 
 
 # Stripe content

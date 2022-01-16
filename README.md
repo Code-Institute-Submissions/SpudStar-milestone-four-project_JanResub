@@ -56,17 +56,31 @@ The Info model contains the variables type1 and type2, which can range from
 1-18 usually due to 18 types being in the game. The problem however was that type2 didnt always have a value hence couldnt link up with a foreign key. 
 To solve this I created a 19th category with a value of 19 as essentially a null category. Any items which initially didnt have a second type were assigned to it to avoid any null errors with the key.
 
-### Images not showing on mobile
+### Loaded migrations stopping progress
+A huge frustration through this was when a migration and data was already loaded for a model, it very much did not like changes to it. Hence in order to run the migration I would often have to start a new workspace, reinstall everything using pip3, and then migrate. I tried searching on the web for a quicker way to do this to no avail.
 
+### Images not showing on mobile
+After finally getting the Google Cloud working (which was an ordeal in itself) the images for all the links were no more. Also my background image from the css wouldnt render anymore
 
 #
 ## Deployment
 I was unable to deploy the project via Heroku, the app refused to connect. Upon attempts to log in via Heroku it would state there was an IP error. I was unable to fix this in time for submission unfortunatley.
 
 #
+## Credits
+### General Code Layout
+For the purpose of this project I referred to and used authentication from the Code Institute Chris's Boutique ADO. However I believe I have differentiated the project enough through my own bootstrap analysis, and database scheme in order to support my own user stories.
+### Data for Databases
+The Json for Info fixtures was largely manipulated by myself however the origonal source of the data was from [here.](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_(Generation_I))
+I copied and pasted the tables into Excel, and then used Windows Powershell to convert it to Json, plus minor text formatting to make it a viable fixture.
+### Media
+The sprites for each pokemon are gotten from [here.](https://veekun.com/dex/downloads)) 
+#
 ## Acknowledgement
 
 A huge thank you to the Student Care team, especially Kieron, whom without which this definitely wouldn't have been possible. It has been a nightmare of a month with illness and bereavement, and thankfully now I have a valid project to submit.
 
 Also a thank you to Igor, who helped me figure out why the ListItemInline wasnt inline in the admin
+
+A lot of work has gone into this project, and I do wish that I had more time to flesh it out, but I am happy with the result and I believe it meets all of the criteria.
 #
